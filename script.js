@@ -17,7 +17,7 @@ function totalPrice() {
 }
 
 function clearCart() {
-  const cart = document.querySelector(cartItemsQuerySelector);
+  const cart = document.querySelector(resultQuerySelector);
   cart.innerHTML = '';
   totalPrice();
   saveCartItems(cart);
@@ -60,7 +60,7 @@ const createCartItems = async (itemId) => {
     const cartItem = document.querySelector('.cart__items');
     cartItem.appendChild(itemElement);
     saveCartItems(cartItem);
-    createTotalPrice();
+    totalPrice();
   } catch (error) {
     return error;
   }
