@@ -40,4 +40,13 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-window.onload = () => { };
+function init() {
+  const data = fetchProducts();
+  const { results } = data;
+  // inclui so um, usar talvez um filter, foreach talvez
+  const elementProduct = createProductItemElement(results[0]);
+  const items = document.querySelector('items');
+  items.appendChild(elementProduct);
+}
+
+windows.onload = () => { init(); };
