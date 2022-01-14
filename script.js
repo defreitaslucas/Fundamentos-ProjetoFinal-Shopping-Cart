@@ -40,13 +40,21 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-function init() {
-  const data = fetchProducts();
+async function init(query) {
+  const data = await fetchProducts(query);
   const { results } = data;
-  // inclui so um, usar talvez um filter, foreach talvez
-  const elementProduct = createProductItemElement(results[0]);
-  const items = document.querySelector('items');
-  items.appendChild(elementProduct);
+  results.forEach((element) => {
+    const object = {
+      sku: element.id,
+      name: element.title,
+      image: element.thumbnail,
+    };
+    const items = document.querySelector('.items');
+    const elementProduct = createProductItemElement(object);
+    items.appendChild(elementProduct);
+  });
 }
 
-windows.onload = () => { init(); };
+window.onload = () => {
+  init('computador');
+};
