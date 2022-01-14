@@ -41,7 +41,7 @@ function cartItemClickListener(event) {
   // coloque seu código aqui
   const itemClick = document.querySelector(resultQuerySelector);
   itemClick.removeChild(event.target);
-  saveCartItems(itemClick);
+  saveCartItems(itemClick.innerHTML);
   totalPrice();
 }
 
@@ -59,7 +59,7 @@ const createCartItems = async (itemId) => {
     const itemElement = createCartItemElement(item);
     const cartItem = document.querySelector('.cart__items');
     cartItem.appendChild(itemElement);
-    saveCartItems(cartItem);
+    saveCartItems(itemElement.innerHTML);
     totalPrice();
   } catch (error) {
     return error;
@@ -109,7 +109,9 @@ async function init(query) {
 
 window.onload = () => {
   init('computador');
-  const list = document.querySelector(resultQuerySelector);
+  let list = '';
+  list = document.querySelector(resultQuerySelector);
+  console.log(getSavedCartItems());
   list.innerHTML = getSavedCartItems();
   adicionaRemoveCarrinho();
   totalPrice();
