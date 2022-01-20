@@ -23,7 +23,7 @@ function totalPrice() {
   });
   acumulador = Math.round(acumulador * 100) / 100;
   const total = document.querySelector('.total-price');
-  total.innerHTML = `Preço total: $${acumulador}`;
+  total.innerText = acumulador;
 }
 
 function cartItemClickListener(event) {
@@ -75,8 +75,14 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
+function removeLoading() {
+  const loading = document.querySelector('.loading');
+  loading.remove();
+}
+
 async function carregaItensNaTela(query) {
   try {
+    removeLoading();
     const objeto = await fetchProducts(query);
     const { results } = objeto;
     results.forEach((element) => {
@@ -88,11 +94,6 @@ async function carregaItensNaTela(query) {
   } catch (error) {
     return error;
   }
-}
-
-function removeLoading() {
-  const loading = document.querySelector('.loading');
-  loading.remove();
 }
 
 function clearCart() {
@@ -114,7 +115,6 @@ function recuperaLocalStorage() {
 window.onload = () => {
   carregaItensNaTela('computador');
   recuperaLocalStorage();
-  removeLoading();
   const buttonClear = document.querySelector('.empty-cart');
   buttonClear.addEventListener('click', clearCart);
 };
