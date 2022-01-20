@@ -82,8 +82,8 @@ function removeLoading() {
 
 async function carregaItensNaTela(query) {
   try {
-    removeLoading();
     const objeto = await fetchProducts(query);
+    removeLoading();
     const { results } = objeto;
     results.forEach((element) => {
       const { id: sku, title: name, thumbnail: image } = element;
