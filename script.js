@@ -23,7 +23,7 @@ function totalPrice() {
   });
   acumulador = Math.round(acumulador * 100) / 100;
   const total = document.querySelector('.total-price');
-  total.innerText = acumulador;
+  total.innerHTML = acumulador;
 }
 
 function cartItemClickListener(event) {
@@ -110,6 +110,7 @@ function recuperaLocalStorage() {
   // depois que recuperei os itens nas linhas 77 e 78 eu tenho que recuperar os escutadores conforme fiz abaixo
   const li = document.querySelectorAll('.cart__items li');
   li.forEach((element) => element.addEventListener('click', cartItemClickListener));
+  totalPrice();
 }
 
 window.onload = () => {
